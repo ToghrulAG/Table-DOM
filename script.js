@@ -13,6 +13,7 @@ let tBodyRow = document.createElement('tr');
 function createTable() {
   let table = document.createElement('table');
   document.querySelector('root').appendChild(table);
+  document.querySelector('table').classList.add('table', 'table-striped', 'table-hover')
   table.append(tHead, tBody);
   tHead.append(tHeadRow);
   tBody.append(tBodyRow);
@@ -37,9 +38,13 @@ async function getAndReplaceData() {
 
   keywords.forEach(keyword => {
     let th = document.createElement('th');
-    th.textContent = keyword;
+    th.textContent = keyword.toUpperCase();
     tHeadRow.appendChild(th);
   });
+
+// NESTED LOOPS ISTIFADE OLUNUB ILK LOOPDA BIZE LORU DILDE DESEK USER MELUMATLARININ ROW-NU QAYTARIR
+// VE LAZIMI QEDER ELEMENTI SAY OLARAQ TR (YENI ROW XANA) KIMI YARADIR
+// IKINCI ITERASIYADA ISE BIZE USERLERIN MELUMATLARINI QAYTARIR (ADRESS, NOMRE VE S), MOVCUD SAY QEDER ITERASIYA EDIB TD YARADIR VE HEMIN VALUE-LARI TEZT OLARAQ TD-E YAZDIRIR VE SONRA BIRINCI ITERASIYADA OLAN TR-NIN ICINE CHILD OLARAQ TDNI VERIR. ITERASIYA BITDIKDE HAZIR OLARAQ TBODY TAG-NIN ICINE TRNI ELAVE EDIR VE NETICEDE APIDEN GELMIS MELUMATLAR BIZIM TABLEDE GORSENIR.
 
   data.forEach(user => {
     let tr = document.createElement('tr');
@@ -53,3 +58,6 @@ async function getAndReplaceData() {
 }
 
 getAndReplaceData();
+
+
+/// GIT LINK : https://github.com/ToghrulAG/Table-DOM.git
